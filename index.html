@@ -36,6 +36,10 @@
         <a href="#features">功能</a>
         <a href="#showcase">界面</a>
         <a href="#download">下载</a>
+        <a class="nav-mobile-only" href="https://github.com/auroracode553/notes-pc-release/issues" target="_blank" rel="noopener">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+          问题反馈
+        </a>
       </nav>
 
       <div class="nav-actions">
@@ -43,9 +47,9 @@
           <svg class="icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
           <svg class="icon-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
         </button>
-        <a id="navDownloadBtn" href="#" class="btn btn-primary nav-download" data-download="exe" rel="noopener">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-          立即下载
+        <a id="navFeedbackBtn" href="https://github.com/auroracode553/notes-pc-release/issues" target="_blank" rel="noopener" class="btn btn-primary nav-download">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+          问题反馈
         </a>
       </div>
 
@@ -193,89 +197,222 @@
         <p class="section-subtitle">类 Typora 风格的沉浸感设计，让写作只专注于内容本身</p>
       </div>
 
-      <!-- 大截图展示 -->
+      <!-- 大截图展示：Aurora 真实界面 1:1 可交互 mock -->
       <div class="showcase-stage reveal">
-        <div class="showcase-window">
-          <!-- 窗口标题栏 -->
-          <div class="mock-titlebar">
-            <div class="mock-traffic">
-              <span class="traffic traffic-close"></span>
-              <span class="traffic traffic-min"></span>
-              <span class="traffic traffic-max"></span>
+        <div class="mock-hint">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11.5a3 3 0 116 0c0 2-3 2.5-3 4.5"/><line x1="12" y1="19" x2="12.01" y2="19"/><circle cx="12" cy="12" r="10"/></svg>
+          可交互演示：试试切换左侧标签、点击文件、大纲跳转，或用状态栏切换源码模式
+        </div>
+        <div class="showcase-window" id="auroraMock">
+          <!-- Windows 风格标题栏 -->
+          <div class="au-titlebar">
+            <div class="au-titlebar-left">
+              <span class="au-app-icon">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+              </span>
+              <span class="au-app-name">极光笔记</span>
             </div>
-            <div class="mock-title">Aurora — 极光笔记.md</div>
-            <div class="mock-menu">
-              <span>文件</span><span>编辑</span><span>段落</span><span>格式</span><span>视图</span><span>主题</span><span>帮助</span>
+            <div class="au-window-controls">
+              <button class="au-ctrl" id="auBtnMin" aria-label="最小化" title="最小化">
+                <svg width="12" height="12" viewBox="0 0 12 12"><rect x="1" y="5.5" width="10" height="1" fill="currentColor"/></svg>
+              </button>
+              <button class="au-ctrl" id="auBtnMax" aria-label="最大化" title="最大化">
+                <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1"><rect x="1.5" y="1.5" width="9" height="9"/></svg>
+              </button>
+              <button class="au-ctrl au-ctrl-close" id="auBtnClose" aria-label="关闭" title="关闭">
+                <svg width="12" height="12" viewBox="0 0 12 12" stroke="currentColor" stroke-width="1.1" stroke-linecap="round"><line x1="1.5" y1="1.5" x2="10.5" y2="10.5"/><line x1="10.5" y1="1.5" x2="1.5" y2="10.5"/></svg>
+              </button>
             </div>
           </div>
-          <!-- 窗口主体 -->
-          <div class="mock-body">
-            <div class="mock-sidebar">
-              <div class="mock-sidebar-header">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-                <span>搜索文件…</span>
+
+          <!-- 菜单栏 -->
+          <div class="au-menubar">
+            <span>文件</span><span>编辑</span><span>段落</span><span>插入</span><span>格式</span><span>视图</span><span>主题</span><span>帮助</span>
+          </div>
+
+          <!-- 工作区 -->
+          <div class="au-workspace" id="auWorkspace">
+            <!-- 侧边栏 -->
+            <aside class="au-sidebar" id="auSidebar">
+              <div class="au-tabs" role="tablist">
+                <button class="au-tab is-active" data-tab="files" role="tab">文件</button>
+                <button class="au-tab" data-tab="recent" role="tab">最近</button>
+                <button class="au-tab" data-tab="outline" role="tab">大纲</button>
+                <span class="au-tab-indicator" id="auTabIndicator"></span>
               </div>
-              <div class="mock-file-tree">
-                <div class="mock-folder open">
-                  <span class="folder-arrow">▾</span>
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 19a2 2 0 01-2 2H4a2 2 0 01-2-2V5a2 2 0 012-2h5l2 3h9a2 2 0 012 2z"/></svg>
-                  <span>aurora-notes</span>
+
+              <div class="au-search">
+                <svg class="au-search-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                <input id="auSearchInput" type="text" placeholder="搜索文件…" spellcheck="false" />
+                <button class="au-search-clear" id="auSearchClear" aria-label="清空搜索" title="关闭">
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+                </button>
+              </div>
+
+              <div class="au-panels">
+                <!-- 文件面板 -->
+                <div class="au-panel is-active" data-panel="files">
+                  <div class="au-tree">
+                    <div class="au-folder is-open">
+                      <span class="au-tree-arrow">
+                        <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+                      </span>
+                      <svg class="au-tree-folder-ico" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 19a2 2 0 01-2 2H4a2 2 0 01-2-2V5a2 2 0 012-2h5l2 3h9a2 2 0 012 2z"/></svg>
+                      <span class="au-tree-label">aurora-notes</span>
+                    </div>
+                    <div class="au-tree-children">
+                      <button class="au-file is-active" data-doc="aurora">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+                        <span class="au-file-name">极光笔记.md</span>
+                      </button>
+                      <button class="au-file" data-doc="guide">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+                        <span class="au-file-name">快速入门.md</span>
+                      </button>
+                      <button class="au-file" data-doc="git">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+                        <span class="au-file-name">Git 工作流.md</span>
+                      </button>
+                    </div>
+                    <div class="au-folder">
+                      <span class="au-tree-arrow">
+                        <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+                      </span>
+                      <svg class="au-tree-folder-ico" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 19a2 2 0 01-2 2H4a2 2 0 01-2-2V5a2 2 0 012-2h5l2 3h9a2 2 0 012 2z"/></svg>
+                      <span class="au-tree-label">resources</span>
+                    </div>
+                  </div>
                 </div>
-                <div class="mock-file active">
-                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/></svg>
-                  <span>极光笔记.md</span>
+
+                <!-- 最近面板 -->
+                <div class="au-panel" data-panel="recent">
+                  <div class="au-recent-list">
+                    <button class="au-recent-item" data-doc="aurora">
+                      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                      <span class="au-recent-name">极光笔记.md</span>
+                      <span class="au-recent-time">刚刚</span>
+                    </button>
+                    <button class="au-recent-item" data-doc="git">
+                      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                      <span class="au-recent-name">Git 工作流.md</span>
+                      <span class="au-recent-time">12 分钟前</span>
+                    </button>
+                    <button class="au-recent-item" data-doc="guide">
+                      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                      <span class="au-recent-name">快速入门.md</span>
+                      <span class="au-recent-time">昨天</span>
+                    </button>
+                  </div>
                 </div>
-                <div class="mock-file">
-                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/></svg>
-                  <span>快速入门.md</span>
-                </div>
-                <div class="mock-file">
-                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/></svg>
-                  <span>Git 工作流.md</span>
-                </div>
-                <div class="mock-folder">
-                  <span class="folder-arrow">▸</span>
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 19a2 2 0 01-2 2H4a2 2 0 01-2-2V5a2 2 0 012-2h5l2 3h9a2 2 0 012 2z"/></svg>
-                  <span>resources</span>
+
+                <!-- 大纲面板（JS 动态渲染） -->
+                <div class="au-panel" data-panel="outline">
+                  <div class="au-outline" id="auOutlineTree"></div>
+                  <div class="au-outline-empty" id="auOutlineEmpty" hidden>
+                    <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+                    <span>暂无标题</span>
+                  </div>
                 </div>
               </div>
-            </div>
-            <div class="mock-editor">
-              <div class="mock-doc">
-                <h1 class="mock-h1">
-                  <span class="hash">#</span> Aurora · 极光
-                </h1>
-                <p class="mock-p">
-                  Aurora 是一款 <strong class="mock-strong">所见即所得</strong> 的 Markdown 编辑器，
-                  让你专注于 <em class="mock-em">内容创作</em> 本身。
-                </p>
-                <h2 class="mock-h2">
-                  <span class="hash">##</span> 功能亮点
-                </h2>
-                <ul class="mock-ul">
-                  <li>✨ 实时渲染，编辑与预览无缝融合</li>
-                  <li>🎨 亮/暗主题 + 自定义强调色</li>
-                  <li>🔀 内置 Git 版本控制系统</li>
-                </ul>
-                <pre class="mock-code"><code><span class="code-k">const</span> <span class="code-v">aurora</span> <span class="code-o">=</span> <span class="code-k">new</span> <span class="code-f">Editor</span>({
-  <span class="code-p">theme</span>: <span class="code-s">'aurora'</span>,
-  <span class="code-p">mode</span>: <span class="code-s">'wysiwyg'</span>
+
+              <div class="au-resizer" title="拖动调整侧边栏宽度"></div>
+            </aside>
+
+            <!-- 编辑区 -->
+            <div class="au-editor" id="auEditor">
+              <!-- 渲染视图 -->
+              <div class="au-doc-scroll" id="auDocScroll">
+                <article class="au-doc is-active" data-render="aurora">
+                  <h1 class="au-h1">Aurora · 极光</h1>
+                  <p class="au-p">Aurora 是一款 <strong>所见即所得</strong> 的 Markdown 编辑器，让你专注于 <em>内容创作</em> 本身。轻量、专注、体验流畅，启动即用。</p>
+                  <h2 class="au-h2">功能亮点</h2>
+                  <ul class="au-ul">
+                    <li>实时渲染，编辑与预览无缝融合</li>
+                    <li>亮 / 暗主题与自定义强调色自由切换</li>
+                    <li>内置 Git 版本控制，可视化查看每次变更</li>
+                  </ul>
+                  <pre class="au-code"><code><span class="tok-k">const</span> aurora <span class="tok-o">=</span> <span class="tok-k">new</span> <span class="tok-f">Editor</span>({
+  <span class="tok-p">theme</span>: <span class="tok-s">'aurora'</span>,
+  <span class="tok-p">mode</span>: <span class="tok-s">'wysiwyg'</span>
 });</code></pre>
-                <blockquote class="mock-quote">
-                  <span class="quote-mark">“</span>
-                  <span>轻量、专注、体验流畅 —— 让你专注于内容创作本身。</span>
-                </blockquote>
+                  <blockquote class="au-quote">轻量、专注、体验流畅 —— 让你专注于内容创作本身。</blockquote>
+                  <h2 class="au-h2">快速上手</h2>
+                  <ol class="au-ol">
+                    <li>打开任意 Markdown 文件或整个文件夹</li>
+                    <li>在渲染视图中直接输入，符号自动转换</li>
+                    <li>通过左侧大纲在长文档中快速跳转</li>
+                  </ol>
+                </article>
+
+                <article class="au-doc" data-render="guide" hidden>
+                  <h1 class="au-h1">快速入门</h1>
+                  <p class="au-p">本指南帮助你在几分钟内熟悉 Aurora 的核心工作流。</p>
+                  <h2 class="au-h2">安装与启动</h2>
+                  <p class="au-p">下载 Windows 安装包后一键安装，首次启动会自动创建示例文档目录。</p>
+                  <pre class="au-code"><code><span class="tok-c"># 查看版本</span>
+aurora <span class="tok-o">--</span>version</code></pre>
+                  <h2 class="au-h2">打开文件</h2>
+                  <p class="au-p">支持拖拽打开、命令行打开与最近文件列表三种方式，文件夹会以树形结构呈现在左侧栏。</p>
+                  <h2 class="au-h2">常用快捷键</h2>
+                  <ul class="au-ul">
+                    <li><code class="au-inline-code">Ctrl + B</code> 加粗</li>
+                    <li><code class="au-inline-code">Ctrl + /</code> 切换源码模式</li>
+                    <li><code class="au-inline-code">Ctrl + P</code> 快速打开文件</li>
+                  </ul>
+                </article>
+
+                <article class="au-doc" data-render="git" hidden>
+                  <h1 class="au-h1">Git 工作流</h1>
+                  <p class="au-p">Aurora 内置源代码管理，无需离开编辑器即可完成完整的 Git 操作。</p>
+                  <h2 class="au-h2">初始化仓库</h2>
+                  <pre class="au-code"><code>git init
+git remote add origin git@example.com:notes.git</code></pre>
+                  <h2 class="au-h2">提交变更</h2>
+                  <ul class="au-ul">
+                    <li>左侧差异面板按文件展示增删行</li>
+                    <li>点击状态栏 Git 图标一键查看待提交文件</li>
+                    <li>支持拉取、推送与冲突标记</li>
+                  </ul>
+                  <h2 class="au-h2">查看历史</h2>
+                  <blockquote class="au-quote">每次保存都可以生成历史快照，随时对比与还原。</blockquote>
+                </article>
+
+                <!-- 源码视图 -->
+                <pre class="au-doc-source" id="auDocSource" hidden></pre>
               </div>
-              <div class="mock-statusbar">
-                <span>Markdown</span>
-                <span class="status-sep">·</span>
-                <span>UTF-8</span>
-                <span class="status-sep">·</span>
-                <span>行 24, 列 8</span>
-                <span class="status-right">Aurora v1.2.21</span>
-              </div>
+
+              <!-- 演示提示 toast -->
+              <div class="au-toast" id="auToast" role="status"></div>
             </div>
           </div>
+
+          <!-- 状态栏 -->
+          <footer class="au-statusbar">
+            <div class="au-status-left">
+              <button class="au-status-btn is-selected" id="auBtnSidebar" title="侧边栏" aria-label="侧边栏">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="9" y1="3" x2="9" y2="21"/></svg>
+              </button>
+              <span class="au-status-divider"></span>
+              <button class="au-status-btn" id="auBtnSource" title="源码模式" aria-label="源码模式">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+              </button>
+              <span class="au-status-divider"></span>
+              <button class="au-status-btn" id="auBtnGit" title="源代码管理" aria-label="源代码管理">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="12" r="3"/><path d="M6 9v6M9 6h6a3 3 0 013 3v0"/></svg>
+                <span class="au-git-badge">2</span>
+              </button>
+              <span class="au-status-divider"></span>
+              <button class="au-status-btn" id="auBtnTop" title="回到顶部" aria-label="回到顶部">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="19" x2="12" y2="5"/><polyline points="5 12 12 5 19 12"/></svg>
+              </button>
+            </div>
+            <div class="au-status-right">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+              <span id="auLineCount">26 行</span>
+              <span class="au-status-sep">·</span>
+              <span id="auCharCount">218 字符</span>
+            </div>
+          </footer>
         </div>
       </div>
 
